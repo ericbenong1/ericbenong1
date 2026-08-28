@@ -38,6 +38,10 @@ An **open-ended, self-directed venture**: a persistent multi-agent system that r
 
 Gemini is available as a routed option inside Abacus.AI/RouteLLM for cheap/high-volume tasks, reserving Claude for harder reasoning and anything touching the governance layer.
 
+### Optional future addition: a personal context layer for board meetings
+
+Separate from the venture's own agent memory (the Abacus.AI RAG store above, which is the *agent team's* shared operational memory) is the idea of an "Open Brain" — a personal, MCP-accessible knowledge store (Postgres + vector search, per Nate B. Jones's write-up, see `STATUS.md`) holding Eric's own standing context: preferences, constraints, past decisions. If built, the Chief of Staff agent could query it via MCP at board-meeting time so Eric doesn't have to re-explain standing context every meeting. Not part of the architecture yet — noted here as a candidate integration for Phase 1+, not a commitment. If built, keep it as a separate database from the venture's own ledger/dashboard data (§4's Lovable+Supabase pillar) even though both would run on Supabase — personal notes and venture financial records shouldn't share a store.
+
 ### Why verification is structural, not optional
 
 The clearest actionable lesson across all three reports — independent of whether the specific anecdotes are real — is: **don't let a single agent both produce and approve its own output, no matter how capable the model.** Concretely: every proposal or deliverable that could reach a board meeting or leave the sandbox passes through an agent that did *not* write it and whose only job is to find problems with it, before a human ever sees it. This is cheap insurance against the two failure modes that show up repeatedly in the source material: confident-sounding fabrication, and agents converging on a shared wrong answer because agreeing is easier than being right.
