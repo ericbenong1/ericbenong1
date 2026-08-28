@@ -111,6 +111,8 @@ Stand up a minimal Claude Code environment: one Orchestrator + 2-3 worker/critic
 **Phase 1 — Governance harness**
 Build the Lovable + Supabase board dashboard: proposal queue, approve/veto buttons, spend ledger, activity feed. No real integrations behind it yet — this is the control surface that everything later plugs into. I should be able to see and control the system before it can touch anything real.
 
+*UI reference (Eric shared screenshots of a similar tool — same "10 agents" village concept, likely a follow-up to the source video):* it uses an animated 2D village where agents move between department buildings, plus a "round table" meeting UI — address everyone or click one name to pull them aside, with a running chat thread and at-a-glance morale/status. **The interaction model is worth adopting now** (roster + broadcast-vs-individual chat + status-at-a-glance maps directly onto this dashboard); **the animated village/game visuals are not** — that's a game-dev-scale build, and worth deferring to a Phase 2+ polish pass only after the governance loop itself is proven out through actual use, not before. Don't let Phase 1 scope-creep into building a game before we know the underlying loop is worth having.
+
 **Phase 2 — Bounded real-world pilot**
 Connect Abacus.AI for memory/routing. Let agents research and draft real (but unpublished) products/actions. Everything still routes through the board. First real spend, if any, is small, explicit, and individually approved — not a standing budget.
 
