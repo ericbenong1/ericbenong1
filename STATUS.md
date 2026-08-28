@@ -4,7 +4,9 @@
 
 ## Where things stand
 
-**Phase: Pre-Phase-0.** Governance and architecture planning only. Nothing has been built, no sandbox pilot has run, no money has moved, nothing external has been touched. See `docs/autonomous-agent-venture-plan.md` §7 for the phase definitions.
+**Phase: Phase 0 complete (pilot only — not yet reviewed/acted on by Eric).** The sandbox pilot described in the old "Next concrete action" below has run: a 3-stage worker/critic pipeline (idea generation → market/competition analysis → scoring/ranking), 6 sub-agent calls total, entirely in-sandbox, no external calls, no spend. Full results, the verification-loop validation, and real token/cost data are in `docs/phase-0-pilot-results.md`. Nothing has moved beyond the sandbox and no further phase has been started — this was explicitly scoped as a one-shot validation run. See `docs/autonomous-agent-venture-plan.md` §7 for the phase definitions.
+
+**Headline result:** the worker/critic verification loop worked — all 3 critics found real, substantive flaws in their paired worker's output (not rubber-stamping), including one critic that surfaced genuine fragility in a ranking's weighting scheme rather than a simple factual error. Cost was real and cheap: ~264,700 tokens / roughly $2 total across the 6 agents (Claude Sonnet 5), ~9 minutes of combined sub-agent wall-clock time. Full detail, including the actual 5-idea evaluation output (ranked: CoachDesk #1, RepurposeIt a close #2 that wins outright under some reasonable alternative weightings) in `docs/phase-0-pilot-results.md`.
 
 **Source of truth:** `docs/autonomous-agent-venture-plan.md`, tracked in [PR #1](https://github.com/ericbenong1/ericbenong1/pull/1) on branch `claude/video-review-cqrxwj`. That file has the full architecture, governance model, and open questions — this file only adds operational notes that don't belong in the architecture doc itself.
 
@@ -35,4 +37,4 @@
 
 ## Next concrete action
 
-Phase 0 sandbox pilot (plan doc §9): a small Claude Code experiment — Orchestrator + 2-3 worker/critic pairs, one narrow research question, no external calls, no spend — to validate the verification loop and get real token-cost data before building anything else. **Not started.**
+Phase 0 sandbox pilot is done — see `docs/phase-0-pilot-results.md`. The next concrete action is Eric's, not the agents': review the pilot results (both the process verdict and the actual idea-ranking output) and decide whether to (a) act on Phase 0's own idea evaluation in some way, (b) move to Phase 1 (the Lovable + Supabase governance/board dashboard), (c) run another Phase-0-style pilot on a different question first, or (d) something else. **Nothing should proceed to Phase 1 or beyond without that decision — no further phase has been started.**
