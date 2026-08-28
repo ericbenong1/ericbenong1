@@ -35,4 +35,8 @@
 
 ## Next concrete action
 
-Phase 0 sandbox pilot (plan doc §9): a small Claude Code experiment — Orchestrator + 2-3 worker/critic pairs, one narrow research question, no external calls, no spend — to validate the verification loop and get real token-cost data before building anything else. **Not started.**
+**Phase 0 sandbox pilot (plan doc §9) — ready to start.** A small Claude Code experiment: Orchestrator + 2-3 worker/critic pairs, no external calls, no spend. Goal: validate the verification loop actually catches bad output, and get real token-cost data before building anything else.
+
+**Chosen test question:** *Research and evaluate 5 digital product/micro-SaaS ideas that could realistically be built and launched using tools already available (Claude Code, Lovable, Abacus.AI). Score each on buildability with current tools, estimated build time, market demand signal, and competition. Rank them and recommend a top pick with reasoning.*
+
+**Done criteria:** the critic(s) actually caught and corrected at least one flaw in a worker's output (not just rubber-stamped it), a ranked recommendation with reasoning was produced, and real token/cost usage was recorded — not committed to any further phase until this actually runs and Eric reviews the result.
