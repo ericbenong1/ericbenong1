@@ -4,7 +4,7 @@
 
 ## Where things stand
 
-**Phase: Pre-Phase-0.** Governance and architecture planning only. Nothing has been built, no sandbox pilot has run, no money has moved, nothing external has been touched. See `docs/autonomous-agent-venture-plan.md` §7 for the phase definitions.
+**Phase: 0 complete.** The sandbox pilot (Orchestrator + 3 worker/critic pairs, one narrow research question, no external calls, no spend) has run — see `docs/phase-0-pilot-results.md` for full results. Summary: the verification loop worked — all 3 workers stayed fabrication-free, but all 3 isolated critics independently caught real, non-trivial gaps (missing ToS/legal risk, missing effort-vs-payoff realism, one internal inconsistency) that the workers missed on their own. ~249k sub-agent tokens for the full 6-agent cycle. No money has moved, nothing external has been touched. Phase 1 (Lovable + Supabase governance dashboard) is next, pending Eric's go-ahead. See `docs/autonomous-agent-venture-plan.md` §7 for the phase definitions.
 
 **Source of truth:** `docs/autonomous-agent-venture-plan.md`, tracked in [PR #1](https://github.com/ericbenong1/ericbenong1/pull/1) on branch `claude/video-review-cqrxwj`. That file has the full architecture, governance model, and open questions — this file only adds operational notes that don't belong in the architecture doc itself.
 
@@ -35,4 +35,4 @@
 
 ## Next concrete action
 
-Phase 0 sandbox pilot (plan doc §9): a small Claude Code experiment — Orchestrator + 2-3 worker/critic pairs, one narrow research question, no external calls, no spend — to validate the verification loop and get real token-cost data before building anything else. **Not started.**
+Phase 0 sandbox pilot (plan doc §9) is **done** — see `docs/phase-0-pilot-results.md`. Next up is Phase 1 (plan doc §7): the Lovable + Supabase governance dashboard (proposal queue, approve/veto UI, spend ledger, agent activity feed) — no real integrations behind it yet, just the control surface. Not started; needs Eric's go-ahead before starting since it's a real build, not another sandbox-only exercise. Two follow-up notes from the Phase 0 report worth carrying in: (1) per-agent token/cost visibility beyond aggregate session totals is a real gap to check before building the ledger; (2) this pilot didn't test the critic loop's ability to catch outright fabrication (no worker attempted any) — worth a targeted follow-up pilot on that specifically at some point.
