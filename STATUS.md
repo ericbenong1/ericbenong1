@@ -15,6 +15,7 @@
 - **Financial recordkeeping:** a Controller/Bookkeeper agent role logs revenue/expense events with tax-relevant metadata as they happen — organizes records for a real accountant, does not replace one.
 - **Ambition:** full self-funding autonomy is the long-term goal, reached only through the phased roadmap (§7) — currently at Phase 0, nothing built yet.
 - **Product direction:** open-ended — agents research and decide what to build/sell, not a fixed product line.
+- **Phase 1 UI direction:** a game-like 2D interface (not a plain dashboard) — but designed specifically against Eric's ADHD triggers: no irrelevant on-screen info, low simultaneous visual density, silent/non-interrupting status (no sound/popups), single fixed screen per view (no pan/scroll/zoom), minimal unprompted motion. Full brief in plan doc §7, Phase 1. Not started — Phase 0 comes first (see below).
 
 ## Environment / access notes
 
