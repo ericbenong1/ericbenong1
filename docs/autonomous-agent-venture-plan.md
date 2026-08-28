@@ -111,7 +111,19 @@ Stand up a minimal Claude Code environment: one Orchestrator + 2-3 worker/critic
 **Phase 1 — Governance harness**
 Build the Lovable + Supabase board dashboard: proposal queue, approve/veto buttons, spend ledger, activity feed. No real integrations behind it yet — this is the control surface that everything later plugs into. I should be able to see and control the system before it can touch anything real.
 
-*UI reference (Eric shared screenshots of a similar tool — same "10 agents" village concept, likely a follow-up to the source video):* it uses an animated 2D village where agents move between department buildings, plus a "round table" meeting UI — address everyone or click one name to pull them aside, with a running chat thread and at-a-glance morale/status. **The interaction model is worth adopting now** (roster + broadcast-vs-individual chat + status-at-a-glance maps directly onto this dashboard); **the animated village/game visuals are not** — that's a game-dev-scale build, and worth deferring to a Phase 2+ polish pass only after the governance loop itself is proven out through actual use, not before. Don't let Phase 1 scope-creep into building a game before we know the underlying loop is worth having.
+### Phase 1 UI design brief: game-like, but ADHD-friendly by design
+
+Eric shared screenshots of a similar tool (same "10 agents" village concept, likely a follow-up to the source video): an animated 2D village where agents move between department buildings, plus a "round table" meeting UI — address everyone or click one name to pull them aside, with a running chat thread and at-a-glance morale/status.
+
+The interaction model is worth adopting directly — roster + broadcast-vs-individual chat + status-at-a-glance maps cleanly onto this dashboard. Eric also wants the 2D game-like visual style itself, not a plain dashboard — but it has to work with ADHD, not against it. He named the actual triggers, which makes this concrete rather than a vague "keep it simple":
+
+- **No irrelevant information on screen.** Show only what's relevant to the current view/task — not everything the system knows, all at once. Secondary detail sits behind a click, not on the main view by default.
+- **Low simultaneous visual density.** Reference screenshots had ~8 live stat readouts in the top bar at once — too much. Each screen shows only what that screen is for.
+- **Silent, non-interrupting by default.** No sound, no popup notifications. Anything needing attention shows as one calm, persistent indicator (e.g. a single badge/count) — never an interrupt.
+- **One fixed screen — no panning, scrolling, or zooming to find things.** Structure the app as separate, switchable *views* (Village overview / Round Table meeting / Who's Who / etc.) rather than one giant world you navigate through — each view is simple and fully visible on its own; switching views, not exploring within one, is how you move around.
+- **Minimal unprompted motion** (a corollary of low visual density, even though not separately called out): agents are static/idle by default, animate only in direct response to interaction — not constant background pathing/walking, which adds visual noise nobody asked for.
+
+The game-like visual style is a real, adopted requirement for Phase 1 — not deferred — as long as it's built to these constraints from the start, not bolted on as an afterthought.
 
 **Phase 2 — Bounded real-world pilot**
 Connect Abacus.AI for memory/routing. Let agents research and draft real (but unpublished) products/actions. Everything still routes through the board. First real spend, if any, is small, explicit, and individually approved — not a standing budget.
