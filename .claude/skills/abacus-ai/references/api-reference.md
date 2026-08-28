@@ -155,9 +155,34 @@ python3 -m venv .venv
 
 ## Known environment constraint (not an API fact)
 
-Confirmed by direct test in this repo's Claude Code cloud sessions: the network egress
-proxy rejects the CONNECT to `api.abacus.ai` and `routellm.abacus.ai` with a 403 —
-`abacus.ai` domains are blocked by this environment's network policy, full stop. A valid
-API key does not help; nothing short of changing the environment's egress policy does.
-This is specific to that kind of sandboxed session — it doesn't apply to a local machine
-or a differently-configured environment.
+Confirmed by direct test in this repo's Claude Code cloud sessions, with a real API key:
+the network egress proxy rejects the CONNECT to `api.abacus.ai` and `routellm.abacus.ai`
+with a 403 — `abacus.ai` domains are blocked by this environment's network policy, full
+stop. A valid API key does not help; nothing short of changing the environment's egress
+policy does. This is specific to that kind of sandboxed session — it doesn't apply to a
+local machine or a differently-configured environment.
+
+**Exact failure signatures observed** (`abacusai` 1.4.110, live key, this environment):
+
+```
+$ python -c "from abacusai import ApiClient; ApiClient('s2_...')"
+WARNING:root:Error while calling API: HTTPSConnectionPool(host='api.abacus.ai', port=443):
+  Max retries exceeded with url: /api/v0/getApiEndpoint
+  (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+  [... repeats for getApiEndpoint x5, then version x5 ...]
+Exception: Failed to initialize API client. Please verify that a valid API key is being used.
+```
+`ApiClient.__init__` discovers the server via `getApiEndpoint`/`version` before doing
+anything else, retries each 5x, and on failure raises an **auth-flavored exception even
+though the actual cause is transport-level**. Don't trust that message to diagnose a real
+key problem in an environment with this kind of restriction.
+
+```
+$ python -c "from abacusai import ApiClient; ApiClient('s2_...').list_route_llm_models()"
+ProxyError: HTTPSConnectionPool(host='api.abacus.ai', port=443): Max retries exceeded with
+  url: /api/v0/listRouteLLMModels
+  (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+```
+A raw call (once construction somehow succeeds, or via direct REST/`requests` instead of
+the SDK) surfaces the honest `ProxyError` — this is the more trustworthy signal that
+you're looking at a network policy block, not a credentials problem.

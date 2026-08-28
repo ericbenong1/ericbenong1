@@ -96,8 +96,17 @@ before depending on an exact parameter name for anything that matters.
 
 ## One environment fact, not an API fact
 
-Some Claude Code sandboxes (this repo's cloud sessions, confirmed here) have a network
-egress policy that blocks `abacus.ai` domains outright — calls fail at the proxy (403 on
-CONNECT) regardless of whether the API key is valid. If a call to Abacus.AI fails
-immediately with a connection-level error rather than an auth or API error, check the
-network policy before assuming the key or the request is wrong.
+Some Claude Code sandboxes (this repo's cloud sessions, confirmed here, live-tested with
+a real key) have a network egress policy that blocks `abacus.ai` domains outright — every
+call fails at the proxy (403 on CONNECT) regardless of whether the API key is valid.
+
+**This produces a specifically misleading symptom worth knowing before you chase it:**
+`abacusai.ApiClient(key)` calls `getApiEndpoint`/`version` during construction to
+discover the server, retries each 5x against the blocked proxy, then raises
+`Exception: Failed to initialize API client. Please verify that a valid API key is being
+used.` — sending you toward "my key is wrong" when the real cause is the network policy.
+A raw REST call or `list_route_llm_models()` at least surfaces the honest error
+(`ProxyError: ... Tunnel connection failed: 403 Forbidden`), which is why that's a faster
+way to tell the two failure modes apart than trusting the SDK's own message. If you ever
+see the "verify that a valid API key" message, check the network policy first — a bad key
+alone doesn't route through 10 retried proxy tunnels to say that.
