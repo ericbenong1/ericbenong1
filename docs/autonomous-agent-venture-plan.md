@@ -52,10 +52,17 @@ This is the part that's actually mine to design, not the videos' — the reports
 - Any spend of real money, at any amount.
 - Any action visible outside the sandbox (publishing a listing, sending an email/message externally, creating an account, signing up for a service).
 - Any new recurring commitment (subscriptions, contracts, API keys with billing attached).
-- Hiring/spinning up new sub-agents beyond a pre-agreed compute/cost envelope.
 - Anything the Chief of Staff agent itself flags as high-uncertainty or high-risk.
 
-**What doesn't:** internal research, drafts, code in the sandbox, simulated/mocked transactions, sub-agent spawning *within* an already-approved budget envelope for an already-approved task.
+**What doesn't:** internal research, drafts, code in the sandbox, simulated/mocked transactions, and — see below — routine hiring/firing of sub-agents within an already-approved budget.
+
+### Hiring and firing sub-agents: a budget envelope, not a per-instance decision
+
+I don't need to personally approve every sub-agent hire. A pre-agreed token/credit budget is itself the control — if a team only has so much budget, spinning up a sub-agent is spending from a pot already approved, the same way a contractor doesn't need sign-off for every hour billed against an approved project budget.
+
+- A small **Hiring Committee** (the Chief of Staff plus a couple of directors) handles the actual interview/hire/fire decisions within budget, autonomously — this is squarely inside the sandbox, no board item needed.
+- Every hire and fire is still **logged to the ledger** for visibility, even though it doesn't require approval — I'm not deciding, but I'm never blind either.
+- I retain a **standing, always-available override**: I can call a meeting and hire or fire any agent directly, at any time, independent of the regular meeting cadence — this isn't something that has to wait for an agenda slot.
 
 **Mechanics:**
 - One agent holds the **Chief of Staff** role — aggregates proposals from other agents into a board agenda rather than every agent pinging me individually.
@@ -75,6 +82,12 @@ Independent of the governance question, a persistent multi-agent system needs de
 - **Context compaction:** rely on Claude Code's existing pipeline (truncate oversized tool output → snip stale history → compact → summarize as a last resort) rather than reinventing it.
 - **Financial controller role:** one agent (or a simple rule layer) tracks token/dollar burn in real time and can pause a runaway worker/critic loop before it becomes a board-meeting-sized problem.
 
+### Financial recordkeeping (tax-ready, not tax-filed)
+
+The same Financial Controller role extends into a **Controller/Bookkeeper agent**: it logs every revenue and expense event as it happens, with tax-relevant metadata attached (date, amount, category, counterparty, purpose) rather than reconstructing this after the fact. It produces periodic summaries for me to hand to an actual accountant.
+
+**Important boundary:** this agent organizes records — it does not replace an accountant, and nothing it produces should be treated as filed tax advice or relied on without a professional reviewing it, especially once any real revenue exists.
+
 ## 7. Phased roadmap
 
 **Phase 0 — Sandbox pilot (no money, no external actions, no board yet needed for basics)**
@@ -93,11 +106,13 @@ Only after Phase 2 has run cleanly: selectively pre-approve specific, narrow, lo
 
 ## 8. Open questions to resolve before building anything real
 
-- **Legal/entity structure:** does agent-run commerce need a business entity, and does that change what "the board" is allowed to approve?
-- **Platform ToS:** does automated/AI-assisted listing creation on any target marketplace (Etsy or otherwise) violate that platform's terms? Needs checking per-platform before Phase 2, not assumed from the source video.
-- **Tax treatment** of AI-assisted revenue.
-- **Security:** prompt-injection and memory-poisoning defenses for anything with persistent shared memory (the "Wild Static" material, while a separate experiment, is a real cautionary pattern here) — needs a concrete design before Phase 2, not just an awareness note.
-- **Meeting cadence in practice:** async agents vs. a human's actual availability — need to pilot this in Phase 1 before assuming daily/weekly digests are the right rhythm.
+- **Legal/entity structure — two separate tracks, not one:**
+  - *bensoncreatives.com / freelance-consulting work:* an independent decision on its own timeline (not gated by this project). Sole-proprietorship works without an LLC; the usual trigger for forming one is real client revenue and liability exposure. Needs a conversation with a real accountant or business attorney, not resolved here.
+  - *The agent venture itself:* almost certainly needs its own entity decision before Phase 2 (real spend / real listings), separate from bensoncreatives.com since it's a distinct activity with its own liability profile. Doesn't block Phase 0 (sandbox-only), but is a hard gate before Phase 2.
+- **Platform ToS:** does automated/AI-assisted listing creation on any target marketplace (Etsy or otherwise) violate that platform's terms? Needs checking per-platform before Phase 2, not assumed from the source video. Not yet researched.
+- **Tax treatment** of AI-assisted revenue: partially addressed structurally — see the Controller/Bookkeeper agent role (§6) for keeping tax-ready records as they happen — but the actual filing/treatment questions still need a real accountant, not just organized data.
+- **Security:** prompt-injection and memory-poisoning defenses for anything with persistent shared memory (the "Wild Static" material, while a separate experiment, is a real cautionary pattern here) — needs a concrete design before Phase 2, not just an awareness note. No design yet. Candidate source to mine for techniques when this gets designed: Nate B. Jones — [newsletter](https://natesnewsletter.substack.com/) (not reachable from this environment; paste specific posts when needed), [YouTube](https://www.youtube.com/@NateBJones), and [GitHub](https://github.com/NateBJones-Projects) (reachable — notably **AI Airlock**, described as a macOS app that sanitizes documents offline before they reach an AI tool, and **Ringer**, described as a parallel orchestrator for AI agent swarms; repo details here came through a summarizing fetch, not a direct read, so verify specifics before relying on them).
+- **Meeting cadence in practice:** async agents vs. a human's actual availability — need to pilot this in Phase 1 before assuming daily/weekly digests are the right rhythm. Still open, no decision yet.
 
 ## 9. Immediate next step
 
