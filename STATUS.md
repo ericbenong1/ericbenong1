@@ -6,7 +6,7 @@
 
 **Phase: Pre-Phase-0.** Governance and architecture planning only. Nothing has been built, no sandbox pilot has run, no money has moved, nothing external has been touched. See `docs/autonomous-agent-venture-plan.md` §7 for the phase definitions.
 
-**Source of truth:** `docs/autonomous-agent-venture-plan.md`, tracked in [PR #1](https://github.com/ericbenong1/ericbenong1/pull/1) on branch `claude/video-review-cqrxwj`. That file has the full architecture, governance model, and open questions — this file only adds operational notes that don't belong in the architecture doc itself.
+**Source of truth:** `docs/autonomous-agent-venture-plan.md`, merged into `main` via [PR #1](https://github.com/ericbenong1/ericbenong1/pull/1). That file has the full architecture, governance model, and open questions — this file only adds operational notes that don't belong in the architecture doc itself.
 
 ## Key decisions so far
 
@@ -30,7 +30,7 @@
 
 - The repo (this file + the plan doc) is the persistent record — not the chat history. A new session should be bootstrapped by pointing it here rather than re-explaining the project.
 - Keep working in one session for active back-and-forth on a single topic. Start a **new session at real phase boundaries** (e.g., when Phase 0 execution actually kicks off) rather than per message.
-- To bootstrap a new session: *"Read `docs/autonomous-agent-venture-plan.md` and `STATUS.md` in ericbenong1/ericbenong1 (branch `claude/video-review-cqrxwj`, PR #1), then continue from there."*
+- To bootstrap a new session: *"Read `docs/autonomous-agent-venture-plan.md` and `STATUS.md` in ericbenong1/ericbenong1 (branch `main`), then continue from there."*
 - Update this file (not just the plan doc) whenever an operational/environment fact changes — access constraints, tooling decisions, device notes — so it doesn't only live in chat history.
 
 ## Next concrete action
