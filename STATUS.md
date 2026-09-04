@@ -4,7 +4,13 @@
 
 ## Where things stand
 
-**Phase: Pre-Phase-0.** Governance and architecture planning only. Nothing has been built, no sandbox pilot has run, no money has moved, nothing external has been touched. See `docs/autonomous-agent-venture-plan.md` §7 for the phase definitions.
+**Phase: 0 — first venture in build.** Governance/architecture planning is done (see `docs/autonomous-agent-venture-plan.md` §7). The first real product, **Rungs** (a daily word-ladder game), is built and playable in Lovable. See `docs/rungs/README.md` for the plan, economics and launch checklist.
+
+**Rungs at a glance (Sept 4, 2026):**
+- Lovable project `a490f708-d2c3-495f-8221-caf59d7f767a` — v1 built and playable in preview, not yet deployed or published.
+- Tested engine upgrade (clean word lists + checkpoint mechanic + challenge links) is committed at `rungs/` in this repo, verified with `node:test`, **not yet applied to Lovable**.
+- **Blocker: the Benson Creatives Lovable workspace is out of credits.** Applying the upgrade and deploying both need credits. Paste `docs/rungs/lovable-next-message.md` once they're topped up.
+- No money has moved. No account was created. Nothing has been published externally.
 
 **Source of truth:** `docs/autonomous-agent-venture-plan.md`, tracked in [PR #1](https://github.com/ericbenong1/ericbenong1/pull/1) on branch `claude/video-review-cqrxwj`. That file has the full architecture, governance model, and open questions — this file only adds operational notes that don't belong in the architecture doc itself.
 
